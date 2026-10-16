@@ -1,0 +1,20 @@
+{
+  "manifest_version": 3,
+  "name": "Edusoft Course Registration",
+  "version": "2.1.0",
+  "minimum_chrome_version": "120",
+  "description": "Đăng ký qua AjaxPro trong tab riêng; lưu tài khoản cục bộ không cần mật khẩu khóa; dừng khi kết quả chưa rõ.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://edusoftweb.hcmiu.edu.vn/*"
+  ],
+  "action": {
+    "default_title": "Edusoft Course Registration",
+    "default_popup": "popup.html"
+  },
+  "content_security_policy": {
+    "extension_pages": "default-src 'self'; script-src 'self'; style-src 'self'; connect-src https://edusoftweb.hcmiu.edu.vn; object-src 'none'; base-uri 'none'; form-action 'none'; frame-src 'none'; img-src 'self' data:"
+  }
+}

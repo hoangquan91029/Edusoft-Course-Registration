@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Edusoft Course Registration</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main>
+      <header class="masthead">
+        <div>
+          <span class="eyebrow">EDUSOFT · INTERNATIONAL UNIVERSITY</span>
+          <h1>Đăng ký môn, từ một nơi riêng.</h1>
+          <p>
+            Gửi trực tiếp đến API của trường. Không phụ thuộc tab Edusoft đang
+            hiển thị.
+          </p>
+        </div>
+        <span class="badge">KIEU HOANG QUAN</span>
+      </header>
+      <div id="notice" role="status" aria-live="polite">
+        Đang đọc thông tin cục bộ…
+      </div>
+      <div class="grid">
+        <section class="card">
+          <span class="step">01 / TÀI KHOẢN</span>
+          <h2>Thông tin ở trên máy bạn</h2>
+          <p class="muted">
+            Tài khoản/mật khẩu lưu trực tiếp trên máy, không mã hóa và không
+            đồng bộ Chrome. Ai đọc được dữ liệu profile trình duyệt có thể đọc
+            mật khẩu.
+          </p>
+          <form id="accountForm" autocomplete="off">
+            <label for="username">Tài khoản trường</label
+            ><input
+              id="username"
+              maxlength="256"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <label for="schoolPassword">Mật khẩu trường</label
+            ><input
+              id="schoolPassword"
+              type="password"
+              maxlength="2048"
+              autocomplete="off"
+            />
+            <div class="actions">
+              <button id="saveAccount" type="button">Lưu tài khoản</button
+              ><button id="deleteAccount" type="button" class="ghost danger">
+                Xóa thông tin đã lưu
+              </button>
+            </div>
+            <p id="accountState" class="state">Chưa lưu thông tin đăng nhập.</p>
+          </form>
+          <hr />
+          <h3>Phiên đăng nhập trường</h3>
+          <div class="actions">
+            <button id="login" type="button" data-idle>
+              Đăng nhập bằng mật khẩu</button
+            ><button id="capture" type="button" class="secondary" data-idle>
+              Nhận phiên hiện tại
+            </button>
+          </div>
+          <p id="identity" class="identity">Chưa nhận phiên.</p>
+          <p class="muted small">
+            Có thể đăng nhập ở cổng trường rồi nhận phiên. SSO/CAPTCHA vẫn xử lý
+            trên trường. Không đổi tài khoản hoặc đăng ký từ tab khác khi tool
+            đang chạy.
+          </p>
+          <a
+            href="https://edusoftweb.hcmiu.edu.vn/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Mở cổng IU ↗</a
+          >
+        </section>
+        <section class="card">
+          <span class="step">02 / KẾ HOẠCH</span>
+          <h2>Chuẩn bị lớp cần đăng ký</h2>
+          <form id="filterForm">
+            <label for="courseFilter">Mã môn để lọc qua API</label>
+            <div class="filter">
+              <input
+                id="courseFilter"
+                maxlength="100"
+                placeholder="Ví dụ: mã môn từ chương trình học"
+                required
+              /><button type="submit" id="filterButton" data-idle>
+                Lấy lớp
+              </button>
+            </div>
+          </form>
+          <div id="classes" class="list">
+            <p class="muted">
+              Danh sách sẽ xuất hiện sau khi nhận phiên và lọc môn.
+            </p>
+          </div>
+          <div class="planheading">
+            <h3>Kế hoạch <span id="planCount">0</span></h3>
+            <button id="clearPlan" class="ghost" data-idle>Xóa kế hoạch</button>
+          </div>
+          <div id="plan" class="list"></div>
+          <div class="actions">
+            <button id="exportPlan" class="secondary">Xuất JSON</button
+            ><label class="fileButton" for="importPlan">Nhập JSON</label
+            ><input
+              id="importPlan"
+              type="file"
+              accept=".json,application/json"
+              data-idle
+            />
+          </div>
+          <p class="muted small">
+            Kế hoạch được giữ cục bộ, tối đa 30 lớp. Tệp JSON không chứa tài
+            khoản, mật khẩu hay cookie.
+          </p>
+        </section>
+        <section class="card wide">
+          <span class="step">03 / THỰC HIỆN</span>
+          <h2>Chọn và lưu qua API</h2>
+          <p>
+            Bấm “Đọc kết quả từ máy chủ” để duyệt cả danh sách hiện tại trước.
+            Lệnh lưu có thể chốt toàn bộ danh sách phiên, gồm các lớp đã có.
+            Tool kiểm tra lớp với máy chủ, chọn lần lượt rồi gửi các bước lưu.
+            Cảnh báo điều kiện học, lịch trùng hoặc đổi nhóm sẽ dừng lượt để bạn
+            kiểm tra.
+          </p>
+          <label class="check"
+            ><input id="authorize" type="checkbox" /><span
+              >Tôi đã đọc kết quả từ máy chủ và đối chiếu tài khoản, danh sách
+              hiện tại cùng kế hoạch. Tôi cho phép chọn thêm và lưu danh sách
+              phiên này.</span
+            ></label
+          >
+          <div class="actions">
+            <button id="run" class="primary" data-idle>
+              Đăng ký và lưu qua API</button
+            ><button id="stop" class="secondary" disabled>
+              Dừng lượt đang chạy</button
+            ><button id="readResults" class="secondary" data-idle>
+              Đọc kết quả từ máy chủ
+            </button>
+          </div>
+          <p class="muted small">
+            Giữ tab điều khiển này mở. Tab trường có thể treo; máy chủ vẫn phải
+            phản hồi. Không bảo đảm chạy khi trình duyệt/máy bị đóng, ngủ hoặc
+            mất mạng.
+          </p>
+          <div id="journal" class="journal" hidden></div>
+          <button id="ackJournal" class="secondary" data-idle hidden>
+            Đã đối chiếu ở trường — mở lượt mới
+          </button>
+          <div id="results" class="results"></div>
+          <h3>Nhật ký phiên này</h3>
+          <ol id="events" class="events" aria-live="polite"></ol>
+        </section>
+      </div>
+      <footer>
+        Chỉ kết nối HTTPS đến edusoftweb.hcmiu.edu.vn. Thông tin đăng nhập chỉ
+        gửi tới form đăng nhập của trường.
+        <a href="HUONG_DAN.md" target="_blank">Hướng dẫn và giới hạn</a>
+      </footer>
+    </main>
+    <script type="module" src="dashboard.js"></script>
+  </body>
+</html>

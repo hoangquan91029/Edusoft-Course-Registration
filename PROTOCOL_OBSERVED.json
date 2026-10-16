@@ -1,0 +1,33 @@
+{
+  "observed_date": "2026-10-15",
+  "origin": "https://edusoftweb.hcmiu.edu.vn",
+  "access": "Public GET only; scripts read as text and never executed",
+  "authenticated_POST_verified": false,
+  "public_files": [
+    {
+      "path": "/ajaxpro/core.ashx",
+      "sha256": "3932bd71277a0b94aa4966ef939e95db17140605a0dbc9832119dedfddccf7aa"
+    },
+    {
+      "path": "/ajaxpro/converter.ashx",
+      "sha256": "d1b80b0db1e1732b8f1a9299ee936fbd50dd9a6d5994c780e0ac6232a46e9d6b"
+    },
+    {
+      "path": "/ajaxpro/EduSoft.Web.UC.DangKyMonHoc,EduSoft.Web.ashx",
+      "sha256": "09b7be53bb0cbc20e4553870a3fb7b6d38886991900ba17c341a3c998742e3aa"
+    },
+    {
+      "path": "/ajaxpro/EduSoft.Web.UC.DangNhap,EduSoft.Web.ashx",
+      "sha256": "001d019967534d1f1880189ad7590a625b88984e937833a481d78ce803408f3c"
+    }
+  ],
+  "registration_request_headers": [
+    "Content-Type: text/plain; charset=utf-8",
+    "X-AjaxPro-Method",
+    "X-AjaxPro-Token (optional)"
+  ],
+  "runtime_response_fixtures": "Based on original tool; not authenticated IU samples",
+  "tested": "42 unit tests and 15 unpacked-extension browser integration scenarios",
+  "extension_version": "2.1.0",
+  "credential_storage": "Plaintext chrome.storage.local, no unlock password, explicit user request"
+}

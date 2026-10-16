@@ -1,0 +1,72 @@
+✔ local account rejects malformed stored records without accepting legacy ciphertext (1.339874ms)
+✔ only exact approved endpoint/method paths (0.192825ms)
+✔ JSON-only envelope, server error, wrong shapes, no executable response (1.024898ms)
+✔ read API retries bounded 503 and honors Retry-After (17.68015ms)
+✔ read max three network attempts (0.593021ms)
+✔ write never retries after timeout/network failure/503 (0.994817ms)
+✔ timeout aborts fetch; mutation state remains unknown (5.249745ms)
+✔ mutation requests are throttled, credentials included, redirect blocked (0.750249ms)
+✔ unknown method is rejected without network (0.180808ms)
+✔ Retry-After over one minute stops (0.336164ms)
+✔ response with content length above bound is rejected (0.420158ms)
+✔ response streamed over bound rejected without trusting Content-Length (5.780031ms)
+✔ selection argument names match live IU definition (0.196652ms)
+✔ normal server selection produces non-overriding stage args (0.177946ms)
+✔ holds other class (0.092977ms)
+✔ holds other course (0.051684ms)
+✔ holds other group (0.03807ms)
+✔ holds group replacement (0.034452ms)
+✔ holds credit limit (0.038531ms)
+✔ holds major rejection (0.045138ms)
+✔ holds elective rejection (0.040935ms)
+✔ holds prerequisite warning (0.035705ms)
+✔ holds timetable clash (0.038782ms)
+✔ holds exam clash (1.450635ms)
+✔ holds extra message (0.05416ms)
+✔ holds online special case (0.033675ms)
+✔ holds improvement not allowed (0.029068ms)
+✔ commit parser does not infer success from message text (0.139745ms)
+✔ full engine flow sends exact method order and checkpoint before each write (1.552421ms)
+✔ pending journal blocks all requests (0.168435ms)
+✔ lock held by another extension tab blocks all requests (0.125341ms)
+✔ account mismatch blocks all requests (0.079576ms)
+✔ journal write failure prevents first mutation dispatch (0.177707ms)
+✔ unknown write outcome retained and blocks next run (0.24328ms)
+✔ server warning stops before stage/save and retains journal (0.192336ms)
+✔ no retry or mutation if all exact classes already in result (0.128099ms)
+✔ unplanned result rows stop before commit (0.23516ms)
+✔ unrecognized final save response never marked complete (0.242514ms)
+✔ manifest exact IU host, storage only, no page scripting/all sites (0.304292ms)
+✔ no sync storage, cookie API, remote scripts or dynamic evaluation (0.571646ms)
+✔ user stop interrupts read backoff promptly (5.099538ms)
+✔ unreviewed baseline prevents all mutations (0.334331ms)
+ℹ tests 42
+ℹ suites 0
+ℹ pass 42
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 93.978913
+{
+  "passed": 15,
+  "checks": [
+    "real unpacked extension loads with exact runtime permissions and no automatic network",
+    "legacy encrypted vault requests re-entry without attempting migration",
+    "save local account in plaintext and replace legacy vault only after explicit save",
+    "reload restores masked credentials without unlock or automatic login",
+    "direct login uses fresh WebForms state and posts credentials only to mocked IU",
+    "authenticated requests include browser cookie without cookie API permission",
+    "API filter parses classes; fieldset-disabled class is not selectable",
+    "full API batch works while school tab lifecycle is frozen",
+    "a pending completion journal prevents another batch without sending requests",
+    "review acknowledgement clears journal without altering server selections",
+    "broken connection keeps UNKNOWN and never advances to stage/save (browser may replay POST)",
+    "reload preserves unknown journal, plan and saved account without automatic requests",
+    "real DOM parser refuses hostile login targets and mismatched result rows",
+    "deleting saved account clears credentials and preserves pending journal and plan",
+    "no script errors or unexpected network origins"
+  ],
+  "observedPOSTsForOneFetchWhenSocketReset": 2,
+  "environment": "Real unpacked extension, Chromium headless, local TLS fixture with hostname mapped to 127.0.0.1; no real IU login or registration requests"
+}
